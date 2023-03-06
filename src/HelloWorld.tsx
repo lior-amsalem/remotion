@@ -8,6 +8,7 @@ import {
 } from 'remotion';
 import {Logo} from './HelloWorld/Logo';
 import {Subtitle} from './HelloWorld/Subtitle';
+import {SubSubtitle} from './HelloWorld/SubSubtitle';
 import {Title} from './HelloWorld/Title';
 
 export const HelloWorld: React.FC<{
@@ -19,7 +20,7 @@ export const HelloWorld: React.FC<{
 
 	// Animate from 0 to 1 after 25 frames
 	const logoTranslationProgress = spring({
-		frame: frame - 25,
+		frame: frame - 5,
 		fps,
 		config: {
 			damping: 100,
@@ -30,13 +31,25 @@ export const HelloWorld: React.FC<{
 	const logoTranslation = interpolate(
 		logoTranslationProgress,
 		[0, 1],
-		[0, -150]
+		[0, -180]
 	);
 
 	// Fade out the animation at the end
 	const opacity = interpolate(
-		frame,
+		frame + 10,
 		[durationInFrames - 25, durationInFrames - 15],
+		[1, 0],
+		{
+			extrapolateLeft: 'clamp',
+			extrapolateRight: 'clamp',
+		}
+	);
+
+//    const testOp = interpolate()
+	const opacityP2 = interpolate(
+		frame + 50,
+		[durationInFrames - 10, durationInFrames - 0],
+		// [50, 80],
 		[1, 0],
 		{
 			extrapolateLeft: 'clamp',
@@ -48,16 +61,17 @@ export const HelloWorld: React.FC<{
 	return (
 		<AbsoluteFill style={{backgroundColor: 'white'}}>
 			<AbsoluteFill style={{opacity}}>
-				<AbsoluteFill style={{transform: `translateY(${logoTranslation}px)`}}>
-					<Logo />
-				</AbsoluteFill>
 				{/* Sequences can shift the time for its children! */}
-				<Sequence from={35}>
+				<Sequence from={0} durationInFrames={170}>
 					<Title titleText={titleText} titleColor={titleColor} />
 				</Sequence>
-				{/* The subtitle will only enter on the 75th frame. */}
-				<Sequence from={75}>
+				<Sequence from={20} durationInFrames={150}>
 					<Subtitle />
+				</Sequence>
+				{/* The subtitle will only enter on the 75th frame. */}
+				<Sequence from={170} durationInFrames={280}>
+					<Title titleText={"Numeric enums"} titleColor={titleColor} />
+					<SubSubtitle />
 				</Sequence>
 			</AbsoluteFill>
 		</AbsoluteFill>

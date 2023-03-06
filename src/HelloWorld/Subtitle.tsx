@@ -7,8 +7,9 @@ const subtitle: React.CSSProperties = {
 	fontSize: 40,
 	textAlign: 'center',
 	position: 'absolute',
-	bottom: 140,
-	width: '100%',
+	top: 200,
+	left: '10%',
+	width: '80%',
 };
 
 const codeStyle: React.CSSProperties = {
@@ -20,7 +21,9 @@ export const Subtitle: React.FC = () => {
 	const opacity = interpolate(frame, [0, 30], [0, 1]);
 	return (
 		<div style={{...subtitle, opacity}}>
-			Edit <code style={codeStyle}>src/Root.tsx</code> and save to reload.
+			Enums are one of the few features TypeScript has which is not a type-level extension of JavaScript.
+
+			Enums allow a developer to define a set of named constants. Using enums can make it easier to document intent, or create a set of distinct cases. TypeScript provides both numeric and string-based enums.
 		</div>
 	);
 };

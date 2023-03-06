@@ -12,14 +12,14 @@ export const RemotionRoot: React.FC = () => {
 				// npx remotion render src/index.ts <id> out/video.mp4
 				id="HelloWorld"
 				component={HelloWorld}
-				durationInFrames={150}
+				durationInFrames={450} // how long the video is going to be ?
 				fps={30}
 				width={1920}
 				height={1080}
 				// You can override these props for each render:
 				// https://www.remotion.dev/docs/parametrized-rendering
 				defaultProps={{
-					titleText: 'Welcome to Remotion',
+					titleText: 'What are Enum In Typescript ?',
 					titleColor: 'black',
 				}}
 			/>
